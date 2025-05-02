@@ -1,17 +1,18 @@
 #include <iostream>
 #include <fstream>
+#include "isFileEmpty.h"
+#include "isFileExists.h"
 
 int main() {
-  int number;
+  long long number;
   std::ifstream fin("first.txt");  
+  isFileExists(fin);
+  isFileEmpty(fin);
+  fin.seekg(0);
   std::ofstream fout("second.txt");
-  if (!fin.is_open()) {
-    std::cerr << "File can't be open" << std::endl;
-    return 1;
-  }
   
   while (fin >> number) {
-    int square = static_cast<int>(number) * number;
+    long long square = static_cast<long long>(number) * number;
     fout << square << " ";
   }
 
